@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Daily Utilities Toolkit</title>
+  <script>
+    function dailyToolkit() {
+      let choice = prompt(
+        "📱 DAILY UTILITIES TOOLKIT 📱\n\n" +
+        "Choose an option (1–5):\n" +
+        "1. Format Name\n" +
+        "2. Generate Random 4-digit OTP\n" +
+        "3. Search City\n" +
+        "4. Show Today’s Date\n" +
+        "5. Mini Calculator\n"
+      );
+
+      if (choice === null) {
+        alert("Operation cancelled!");
+        return;
+      }
+
+      choice = choice.trim();
+
+      switch (choice) {
+  
+        case "1":
+          let name = prompt("Enter your full name:");
+          if (!name || name.trim() === "") {
+            alert("Please enter a valid name!");
+            return;
+          }
+          let formattedName = name
+            .toLowerCase()
+            .split(" ")
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+          alert("Formatted Name: " + formattedName);
+          break;
+
+        case "2":
+          let otp = Math.floor(1000 + Math.random() * 9000);
+          alert("Your 4-digit OTP is: " + otp);
+          break;
+
+        case "3":
+          let cities = ["Karachi", "Lahore", "Islamabad"];
+          let userCity = prompt("Enter city name to search:");
+          if (!userCity || userCity.trim() === "") {
+            alert("Please enter a valid city name!");
+            return;
+          }
+          userCity = userCity.trim().toLowerCase();
+          let found = cities.some(city => city.toLowerCase() === userCity);
+          if (found) {
+            alert("✅ " + userCity.charAt(0).toUpperCase() + userCity.slice(1) + " is in the list!");
+          } else {
+            alert("❌ City not found in the list.");
+          }
+          break;
+
+        case "4":
+          let today = new Date();
+          let day = String(today.getDate()).padStart(2, '0');
+          let month = String(today.getMonth() + 1).padStart(2, '0');
+          let year = today.getFullYear();
+          let formattedDate = `${day}/${month}/${year}`;
+          alert("📅 Today's Date: " + formattedDate);
+          break;
+
+        case "5":
+          let num1 = prompt("Enter first number:");
+          let num2 = prompt("Enter second number:");
+          let operator = prompt("Choose operation (+, -, *, /):");
+
+          if (num1 === null || num2 === null || operator === null) {
+            alert("Operation cancelled!");
+            return;
+          }
+
+          num1 = Number(num1);
+          num2 = Number(num2);
+
+          if (isNaN(num1) || isNaN(num2)) {
+            alert("Please enter valid numeric values!");
+            return;
+          }
+
+          let result;
+
+          switch (operator) {
+            case "+":
+              result = num1 + num2;
+              break;
+            case "-":
+              result = num1 - num2;
+              break;
+            case "*":
+              result = num1 * num2;
+              break;
+            case "/":
+              if (num2 === 0) {
+                alert("❌ Division by zero is not allowed!");
+                return;
+              }
+              result = num1 / num2;
+              break;
+            default:
+              alert("Invalid operator! Please use +, -, *, or /.");
+              return;
+          }
+
+          alert(`Result: ${num1} ${operator} ${num2} = ${result}`);
+          break;
+
+        default:
+          alert("Invalid choice! Please enter a number between 1 and 5.");
+      }
+    }
+  </script>
+</head>
+<body onload="dailyToolkit()">
+</body>
+</html>

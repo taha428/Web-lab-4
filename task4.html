@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BMI Calculator (Pounds & Inches)</title>
+  <script>
+    function calculateBMI() {
+      // Ask for weight in pounds
+      let weight = prompt("Enter your weight in pounds (lb):");
+      if (weight === null || weight.trim() === "") {
+        alert("Weight cannot be empty!");
+        return;
+      }
+      weight = Number(weight);
+      if (isNaN(weight) || weight <= 0) {
+        alert("Please enter a valid positive number for weight!");
+        return;
+      }
+
+      // Ask for height in inches
+      let height = prompt("Enter your height in inches (in):");
+      if (height === null || height.trim() === "") {
+        alert("Height cannot be empty!");
+        return;
+      }
+      height = Number(height);
+      if (isNaN(height) || height <= 0) {
+        alert("Please enter a valid positive number for height!");
+        return;
+      }
+
+      // Calculate BMI using formula: BMI = (weight / (height * height)) * 703
+      // (703 is used to convert from imperial units to standard BMI)
+      let bmi = (weight / (height * height)) * 703;
+
+      // Display BMI rounded to 1 decimal place
+      alert("Your BMI is: " + bmi.toFixed(1));
+    }
+  </script>
+</head>
+<body onload="calculateBMI()">
+</body>
+</html>

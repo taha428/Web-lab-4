@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BMI Calculator</title>
+  <script>
+    function calculateBMI() {
+      // Ask for user weight
+      let weight = prompt("Enter your weight in kilograms (kg):");
+      if (weight === null || weight.trim() === "") {
+        alert("Weight cannot be empty!");
+        return;
+      }
+      weight = Number(weight);
+      if (isNaN(weight) || weight <= 0) {
+        alert("Please enter a valid positive number for weight!");
+        return;
+      }
+
+      // Ask for user height
+      let height = prompt("Enter your height in meters (m):");
+      if (height === null || height.trim() === "") {
+        alert("Height cannot be empty!");
+        return;
+      }
+      height = Number(height);
+      if (isNaN(height) || height <= 0) {
+        alert("Please enter a valid positive number for height!");
+        return;
+      }
+
+      // Calculate BMI
+      let bmi = weight / (height * height);
+
+      // Determine category
+      let category;
+      if (bmi < 18.5) {
+        category = "Underweight";
+      } else if (bmi >= 18.5 && bmi <= 24.9) {
+        category = "Normal";
+      } else if (bmi >= 25.0 && bmi <= 29.9) {
+        category = "Overweight";
+      } else {
+        category = "Obese";
+      }
+
+      // Display results
+      alert("Your BMI is: " + bmi.toFixed(2) + "\nCategory: " + category);
+    }
+  </script>
+</head>
+<body onload="calculateBMI()">
+</body>
+</html>

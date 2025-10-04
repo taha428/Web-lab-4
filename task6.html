@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Marks & Grade System</title>
+  <script>
+    function gradeSystem() {
+
+      let subjects = ["English", "Math", "Science", "Computer", "Urdu"];
+      let marks = [];
+      let total = 0;
+      let maxMarks = 500; 
+
+      for (let i = 0; i < subjects.length; i++) {
+        let input = prompt("Enter marks for " + subjects[i] + " (out of 100):");
+
+        if (input === null) {
+          alert("Operation cancelled!");
+          return;
+        }
+
+        input = Number(input);
+
+        if (isNaN(input) || input < 0 || input > 100) {
+          alert("❌ Invalid marks! Please enter a number between 0 and 100.");
+          i--; 
+          continue;
+        }
+
+        marks.push(input);
+        total += input;
+      }
+
+      let percentage = (total / maxMarks) * 100;
+
+      let grade;
+      if (percentage >= 80) {
+        grade = "A";
+      } else if (percentage >= 60) {
+        grade = "B";
+      } else {
+        grade = "Fail";
+      }
+
+      let result =
+        "📘 Student Result Summary\n\n" +
+        "Subjects and Marks:\n";
+
+      for (let i = 0; i < subjects.length; i++) {
+        result += `${subjects[i]}: ${marks[i]}/100\n`;
+      }
+
+      result +=
+        "\nTotal Marks: " + total + "/500" +
+        "\nPercentage: " + percentage.toFixed(2) + "%" +
+        "\nGrade: " + grade;
+
+      alert(result);
+    }
+  </script>
+</head>
+<body onload="gradeSystem()">
+</body>
+</html>
